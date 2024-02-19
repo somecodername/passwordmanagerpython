@@ -19,7 +19,7 @@ def create_table(conn):
 
 def add_password(conn):
     website = input("Enter website or service name: ")
-    strength = input("Enter password strength (easy, normal, hard, one-time): ").lower()
+    strength = input("Enter password strength (easy, normal, hard): ").lower()
     
     if strength == 'one-time':
         length = int(input("Enter password length (max 16): "))
