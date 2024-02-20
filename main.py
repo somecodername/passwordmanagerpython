@@ -28,26 +28,19 @@ def add_password(conn):
             return
         password = generate_one_time_password(length)
         print("Generated one-time password:", password)
-        return
-    elif strength not in ['easy', 'normal', 'hard']:
-        print("Invalid password strength. Please choose 'easy', 'normal', 'hard'.")
-        return
-    
-    password = generate_password(strength)
-    
-    if not password:
-        print("Invalid password strength. Please choose 'easy', 'normal', or 'hard'.")
-        return
-    
-    print("Generated password:", password)
-       
-    try:
-        c = conn.cursor()
-        c.execute("INSERT OR REPLACE INTO passwords VALUES (?, ?)", (website, password))
-        conn.commit()
-        print("Password added successfully.")
-    except sqlcipher3.Error as e:
-        print("An error occurred while adding the password:", e)
+    else:
+        password = generate_password(strength)
+        
+    if password:
+        try:
+            c = conn.cursor()
+            c.execute("INSERT OR REPLACE INTO passwords VALUES (?, ?)", (website, password))
+            conn.commit()
+            print("Password added successfully.")
+        except sqlcipher3.Error as e:
+            print("An error occurred while adding the password:", e)
+    else:
+        print("Invalid password strength. Please choose 'easy', 'normal', 'hard', or 'one-time'.")
 
 def retrieve_password(conn):
     website = input("Enter website or service name: ")
@@ -118,4 +111,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
