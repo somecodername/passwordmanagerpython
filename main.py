@@ -19,7 +19,7 @@ def create_table(conn):
 
 def add_password(conn):
     website = input("Enter website or service name: ")
-    strength = input("Enter password strength (easy, normal, hard): ").lower()
+    strength = input("Enter password strength (easy, normal, hard, one-time): ").lower()
     
     if strength == 'one-time':
         length = int(input("Enter password length (max 16): "))
@@ -41,11 +41,11 @@ def add_password(conn):
     
     print("Generated password:", password)
     
-    confirm_password = getpass.getpass("Confirm password: ")
+    #confirm_password = getpass.getpass("Confirm password: ")
     
-    if password != confirm_password:
-        print("Passwords do not match. Please try again.")
-        return
+    #if password != confirm_password:
+        #print("Passwords do not match. Please try again.")
+        #return
     
     try:
         c = conn.cursor()
