@@ -19,7 +19,7 @@ def create_table(conn):
 
 def add_password(conn):
     website = input("Enter website or service name: ")
-    strength = input("Enter password strength (easy, normal, hard, one-time): ").lower()
+    strength = input("Enter password strength (easy, normal, hard,): ").lower()
     
     if strength == 'one-time':
         length = int(input("Enter password length (max 16): "))
@@ -30,7 +30,7 @@ def add_password(conn):
         print("Generated one-time password:", password)
         return
     elif strength not in ['easy', 'normal', 'hard']:
-        print("Invalid password strength. Please choose 'easy', 'normal', 'hard', or 'one-time'.")
+        print("Invalid password strength. Please choose 'easy', 'normal', 'hard'.")
         return
     
     password = generate_password(strength)
@@ -124,3 +124,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
