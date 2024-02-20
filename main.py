@@ -40,13 +40,7 @@ def add_password(conn):
         return
     
     print("Generated password:", password)
-    
-    #confirm_password = getpass.getpass("Confirm password: ")
-    
-    #if password != confirm_password:
-        #print("Passwords do not match. Please try again.")
-        #return
-    
+       
     try:
         c = conn.cursor()
         c.execute("INSERT OR REPLACE INTO passwords VALUES (?, ?)", (website, password))
