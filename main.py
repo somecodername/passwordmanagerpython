@@ -75,7 +75,7 @@ def generate_one_time_password(length):
     return ''.join(random.choice(characters) for _ in range(length))
 
 def main():
-    conn = sqlcipher3.connect('passwords.db')
+    conn = sqlcipher3.connect('passwordsencrypy.db')
     conn.execute('PRAGMA key="{}"'.format(key))
     
     create_table(conn)
